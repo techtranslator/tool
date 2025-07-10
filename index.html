@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolHub - All Essential Online Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --warning-color: #f0ad4e;
+            --danger-color: #d9534f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .categories {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background-color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .category-tab.active, .category-tab:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-icon {
+            background-color: var(--light-color);
+            padding: 25px;
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .tool-info {
+            padding: 20px;
+        }
+        
+        .tool-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .tool-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .tool-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .tool-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .popular-tools {
+            margin-bottom: 60px;
+        }
+        
+        .recent-tools {
+            margin-bottom: 60px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Tool Modal Styles */
+        .tool-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 800px;
+            width: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .tool-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .tool-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .tool-input-group input, 
+        .tool-input-group select, 
+        .tool-input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .tool-input-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .tool-result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .tool-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: #ddd;
+            color: var(--dark-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #ccc;
+        }
+        
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .copy-btn:hover {
+            background-color: #3aa8d8;
+        }
+        
+        /* Specific tool styles */
+        #json-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        #password-output {
+            font-size: 1.2rem;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            word-break: break-all;
+        }
+        
+        .password-strength {
+            margin: 10px 0;
+        }
+        
+        .strong {
+            color: var(--success-color);
+        }
+        
+        .medium {
+            color: var(--warning-color);
+        }
+        
+        .weak {
+            color: var(--danger-color);
+        }
+        
+        .color-display {
+            width: 100%;
+            height: 60px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .color-values div {
+            margin-bottom: 8px;
+        }
+        
+        .color-values label {
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .palette-color {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .palette-color:hover {
+            transform: scale(1.1);
+        }
+        
+        .qr-code-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code-display img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .qr-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .short-url-display {
+            font-size: 1.2rem;
+            padding: 10px;
+            background-color: #f0f2f5;
+            border-radius: 5px;
+            word-break: break-all;
+        }
+        
+        .url-info div {
+            margin-bottom: 8px;
+        }
+        
+        .url-info label {
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        .count-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .keyword-analysis {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .keyword-analysis h4 {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .tool-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-tools"></i> ToolHub
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#popular">Popular</a></li>
+                    <li><a href="#recent">Recent</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>All Essential Tools in One Place</h1>
+            <p>Save time and boost your productivity with our collection of free online tools for developers, designers, students, and professionals.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for tools..." id="search-input">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All</div>
+                <div class="category-tab" data-category="developer">Developer</div>
+                <div class="category-tab" data-category="design">Design</div>
+                <div class="category-tab" data-category="productivity">Productivity</div>
+                <div class="category-tab" data-category="education">Education</div>
+                <div class="category-tab" data-category="finance">Finance</div>
+            </div>
+            <div class="tools-grid">
+                <!-- Developer Tools -->
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>JSON Formatter</h3>
+                        <p>Format and validate your JSON data with this easy-to-use tool.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="json-formatter">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Base64 Encode/Decode</h3>
+                        <p>Encode and decode Base64 strings quickly and easily.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="base64">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Password Generator</h3>
+                        <p>Generate strong, secure passwords with custom options.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="password-generator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Design Tools -->
+                <div class="tool-card" data-category="design">
+                    <div class="tool-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Color Picker</h3>
+                        <p>Select, convert and generate beautiful color palettes.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="color-picker">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="design">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Image Compressor</h3>
+                        <p>Compress your images without losing quality.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="image-compressor">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="design">
+                    <div class="tool-icon">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Font Converter</h3>
+                        <p>Convert fonts between different formats easily.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="font-converter">Use Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Productivity Tools -->
+                <div class="tool-card" data-category="productivity">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Meeting Scheduler</h3>
+                        <p>Find the perfect time for meetings across timezones.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="meeting-scheduler">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="productivity">
+                    <div class="tool-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Task Timer</h3>
+                        <p>Track time spent on tasks with this simple timer.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="task-timer">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="productivity">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF Merger</h3>
+                        <p>Combine multiple PDF files into one document.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="pdf-merger">Use Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Education Tools -->
+                <div class="tool-card" data-category="education">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Scientific Calculator</h3>
+                        <p>Advanced calculator for students and professionals.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="scientific-calculator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="education">
+                    <div class="tool-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Text Summarizer</h3>
+                        <p>Summarize long articles and documents quickly.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="text-summarizer">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="education">
+                    <div class="tool-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Citation Generator</h3>
+                        <p>Generate citations in APA, MLA, Chicago formats.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="citation-generator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Finance Tools -->
+                <div class="tool-card" data-category="finance">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Currency Converter</h3>
+                        <p>Convert between world currencies with live rates.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="currency-converter">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="finance">
+                    <div class="tool-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Loan Calculator</h3>
+                        <p>Calculate loan payments, interest, and amortization.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="loan-calculator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="finance">
+                    <div class="tool-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Budget Planner</h3>
+                        <p>Plan and track your monthly budget effectively.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="budget-planner">Use Tool</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-tools" id="popular">
+        <div class="container">
+            <h2 class="section-title">Most Popular Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>QR Code Generator</h3>
+                        <p>Create custom QR codes for URLs, text, contact info and more.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="qr-generator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>URL Shortener</h3>
+                        <p>Shorten long URLs to make them easier to share.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="url-shortener">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Word Counter</h3>
+                        <p>Count words, characters, sentences and more in your text.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="word-counter">Use Tool</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="recent-tools" id="recent">
+        <div class="container">
+            <h2 class="section-title">Recently Added Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>AI Text Generator</h3>
+                        <p>Generate human-like text using advanced AI technology.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="ai-text-generator">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Password Strength Checker</h3>
+                        <p>Test how strong your passwords are against attacks.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="password-checker">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Weather API Explorer</h3>
+                        <p>Explore weather data from various APIs in one place.</p>
+                        <a href="#" class="tool-link open-modal" data-tool="weather-api">Use Tool</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ToolHub</h3>
+                    <p>Your one-stop destination for all essential online tools. Save time and boost productivity with our free tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#popular">Popular Tools</a></li>
+                        <li><a href="#recent">Recent Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-category="developer">Developer Tools</a></li>
+                        <li><a href="#" data-category="design">Design Tools</a></li>
+                        <li><a href="#" data-category="productivity">Productivity</a></li>
+                        <li><a href="#" data-category="education">Education</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@toolhub.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tool Street, San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ToolHub. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tool Modals -->
+    <!-- JSON Formatter Modal -->
+    <div class="tool-modal" id="json-formatter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>JSON Formatter</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="json-input">Enter your JSON:</label>
+                    <textarea id="json-input" placeholder='{"key": "value"}'></textarea>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="format-json">Format</button>
+                    <button class="btn btn-primary" id="minify-json">Minify</button>
+                    <button class="btn btn-secondary" id="validate-json">Validate</button>
+                    <button class="btn btn-secondary" id="clear-json">Clear</button>
+                </div>
+                <div class="tool-result" id="json-result">
+                    <h3>Formatted JSON:</h3>
+                    <pre id="json-output"></pre>
+                    <button class="btn copy-btn" id="copy-json">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Base64 Encoder/Decoder Modal -->
+    <div class="tool-modal" id="base64-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Base64 Encoder/Decoder</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="base64-input">Enter text to encode or Base64 to decode:</label>
+                    <textarea id="base64-input" placeholder="Enter text here..."></textarea>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="encode-base64">Encode</button>
+                    <button class="btn btn-primary" id="decode-base64">Decode</button>
+                    <button class="btn btn-secondary" id="clear-base64">Clear</button>
+                </div>
+                <div class="tool-result" id="base64-result">
+                    <h3>Result:</h3>
+                    <textarea id="base64-output" readonly></textarea>
+                    <button class="btn copy-btn" id="copy-base64">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Generator Modal -->
+    <div class="tool-modal" id="password-generator-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Password Generator</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="password-length">Password Length (8-64):</label>
+                    <input type="range" id="password-length" min="8" max="64" value="16">
+                    <span id="length-value">16</span>
+                </div>
+                
+                <div class="tool-input-group">
+                    <label>Character Types:</label>
+                    <div>
+                        <input type="checkbox" id="uppercase" checked>
+                        <label for="uppercase">Uppercase Letters (A-Z)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="lowercase" checked>
+                        <label for="lowercase">Lowercase Letters (a-z)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="numbers" checked>
+                        <label for="numbers">Numbers (0-9)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="symbols">
+                        <label for="symbols">Symbols (!@#$%^&*)</label>
+                    </div>
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="generate-password">Generate Password</button>
+                    <button class="btn btn-secondary" id="reset-password">Reset</button>
+                </div>
+                
+                <div class="tool-result" id="password-result">
+                    <h3>Generated Password:</h3>
+                    <div class="password-display" id="password-output"></div>
+                    <div class="password-strength" id="password-strength"></div>
+                    <button class="btn copy-btn" id="copy-password">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Picker Modal -->
+    <div class="tool-modal" id="color-picker-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Color Picker</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="color-selector">Select a Color:</label>
+                    <input type="color" id="color-selector" value="#4361ee">
+                </div>
+                
+                <div class="tool-input-group">
+                    <label>Color Formats:</label>
+                    <div>
+                        <input type="radio" id="hex-format" name="color-format" checked>
+                        <label for="hex-format">HEX</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="rgb-format" name="color-format">
+                        <label for="rgb-format">RGB</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="hsl-format" name="color-format">
+                        <label for="hsl-format">HSL</label>
+                    </div>
+                </div>
+                
+                <div class="tool-result" id="color-result">
+                    <h3>Color Values:</h3>
+                    <div class="color-display" id="color-display"></div>
+                    <div class="color-values">
+                        <div>
+                            <label>HEX:</label>
+                            <span id="hex-value">#4361ee</span>
+                        </div>
+                        <div>
+                            <label>RGB:</label>
+                            <span id="rgb-value">rgb(67, 97, 238)</span>
+                        </div>
+                        <div>
+                            <label>HSL:</label>
+                            <span id="hsl-value">hsl(230, 83%, 60%)</span>
+                        </div>
+                    </div>
+                    <button class="btn copy-btn" id="copy-color">Copy HEX</button>
+                </div>
+                
+                <div class="tool-input-group">
+                    <label>Color Palette:</label>
+                    <div class="color-palette" id="color-palette">
+                        <div class="palette-color" style="background-color: #4361ee;"></div>
+                        <div class="palette-color" style="background-color: #3a0ca3;"></div>
+                        <div class="palette-color" style="background-color: #4cc9f0;"></div>
+                        <div class="palette-color" style="background-color: #f72585;"></div>
+                        <div class="palette-color" style="background-color: #7209b7;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Generator Modal -->
+    <div class="tool-modal" id="qr-generator-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>QR Code Generator</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="qr-content">Content to encode:</label>
+                    <input type="text" id="qr-content" placeholder="Enter URL or text">
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="qr-size">Size:</label>
+                    <select id="qr-size">
+                        <option value="100">100x100</option>
+                        <option value="200" selected>200x200</option>
+                        <option value="300">300x300</option>
+                        <option value="400">400x400</option>
+                    </select>
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="qr-color">Color:</label>
+                    <input type="color" id="qr-color" value="#000000">
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="generate-qr">Generate QR Code</button>
+                    <button class="btn btn-secondary" id="reset-qr">Reset</button>
+                </div>
+                
+                <div class="tool-result" id="qr-result">
+                    <h3>QR Code:</h3>
+                    <div class="qr-code-display" id="qr-code-display"></div>
+                    <div class="qr-actions">
+                        <button class="btn copy-btn" id="download-qr">Download PNG</button>
+                        <button class="btn btn-secondary" id="share-qr">Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- URL Shortener Modal -->
+    <div class="tool-modal" id="url-shortener-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>URL Shortener</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="long-url">Enter your long URL:</label>
+                    <input type="url" id="long-url" placeholder="https://example.com/very-long-url">
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="custom-alias">Custom alias (optional):</label>
+                    <input type="text" id="custom-alias" placeholder="my-link">
+                    <small>https://toolhub.com/go/<span id="alias-preview">random</span></small>
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="shorten-url">Shorten URL</button>
+                    <button class="btn btn-secondary" id="clear-url">Clear</button>
+                </div>
+                
+                <div class="tool-result" id="url-result">
+                    <h3>Short URL:</h3>
+                    <div class="short-url-display" id="short-url-output"></div>
+                    <div class="url-info">
+                        <div>
+                            <label>Original URL:</label>
+                            <span id="original-url"></span>
+                        </div>
+                        <div>
+                            <label>Clicks:</label>
+                            <span id="url-clicks">0</span>
+                        </div>
+                    </div>
+                    <button class="btn copy-btn" id="copy-url">Copy Short URL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Word Counter Modal -->
+    <div class="tool-modal" id="word-counter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Word Counter</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="text-to-count">Enter your text:</label>
+                    <textarea id="text-to-count" placeholder="Type or paste your text here..."></textarea>
+                </div>
+                
+                <div class="tool-result" id="count-result">
+                    <div class="count-stats">
+                        <div class="stat-box">
+                            <div class="stat-value" id="word-count">0</div>
+                            <div class="stat-label">Words</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="character-count">0</div>
+                            <div class="stat-label">Characters</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="character-no-spaces">0</div>
+                            <div class="stat-label">Characters (no spaces)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="sentence-count">0</div>
+                            <div class="stat-label">Sentences</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="paragraph-count">0</div>
+                            <div class="stat-label">Paragraphs</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="reading-time">0</div>
+                            <div class="stat-label">Reading Time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="keyword-analysis">
+                        <h4>Keyword Density:</h4>
+                        <div id="keyword-density"></div>
+                    </div>
+                    
+                    <button class="btn copy-btn" id="copy-text">Copy Text</button>
+                    <button class="btn btn-secondary" id="clear-text">Clear Text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Text Generator Modal -->
+    <div class="tool-modal" id="ai-text-generator-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AI Text Generator</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="ai-prompt">Enter your prompt:</label>
+                    <textarea id="ai-prompt" placeholder="Describe what you want to generate..."></textarea>
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="ai-tone">Tone:</label>
+                    <select id="ai-tone">
+                        <option value="professional">Professional</option>
+                        <option value="casual">Casual</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="formal">Formal</option>
+                    </select>
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="ai-length">Length:</label>
+                    <select id="ai-length">
+                        <option value="short">Short</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="long">Long</option>
+                    </select>
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="generate-text">Generate Text</button>
+                    <button class="btn btn-secondary" id="clear-ai">Clear</button>
+                </div>
+                
+                <div class="tool-result" id="ai-result">
+                    <h3>Generated Text:</h3>
+                    <textarea id="ai-output" readonly></textarea>
+                    <button class="btn copy-btn" id="copy-ai">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Strength Checker Modal -->
+    <div class="tool-modal" id="password-checker-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Password Strength Checker</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="password-to-check">Enter password to check:</label>
+                    <input type="text" id="password-to-check" placeholder="Enter your password">
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="check-password">Check Strength</button>
+                    <button class="btn btn-secondary" id="clear-checker">Clear</button>
+                </div>
+                
+                <div class="tool-result" id="checker-result">
+                    <h3>Password Analysis:</h3>
+                    <div class="password-strength" id="password-strength-check"></div>
+                    <div id="password-feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather API Explorer Modal -->
+    <div class="tool-modal" id="weather-api-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Weather API Explorer</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-input-group">
+                    <label for="weather-location">Location:</label>
+                    <input type="text" id="weather-location" placeholder="City or ZIP code">
+                </div>
+                
+                <div class="tool-input-group">
+                    <label for="weather-units">Units:</label>
+                    <select id="weather-units">
+                        <option value="metric">Metric (°C, m/s)</option>
+                        <option value="imperial">Imperial (°F, mph)</option>
+                    </select>
+                </div>
+                
+                <div class="tool-actions">
+                    <button class="btn btn-primary" id="get-weather">Get Weather</button>
+                    <button class="btn btn-secondary" id="clear-weather">Clear</button>
+                </div>
+                
+                <div class="tool-result" id="weather-result">
+                    <h3>Weather Data:</h3>
+                    <div id="weather-output"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Category Filtering
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const toolCards = document.querySelectorAll('.tool-card');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const category = tab.dataset.category;
+                
+                // Filter tools
+                toolCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search Functionality
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        
+        searchBtn.addEventListener('click', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (!searchTerm) {
+                // Reset view if search is empty
+                document.querySelector('.category-tab.active').click();
+                return;
+            }
+            
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+        
+        // Modal Handling
+        const modalTriggers = document.querySelectorAll('.open-modal');
+        const modals = document.querySelectorAll('.tool-modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const toolId = trigger.dataset.tool;
+                const modal = document.getElementById(`${toolId}-modal`);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.tool-modal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tool-modal')) {
+                e.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // JSON Formatter Tool
+        const jsonInput = document.getElementById('json-input');
+        const jsonOutput = document.getElementById('json-output');
+        const formatJsonBtn = document.getElementById('format-json');
+        const minifyJsonBtn = document.getElementById('minify-json');
+        const validateJsonBtn = document.getElementById('validate-json');
+        const clearJsonBtn = document.getElementById('clear-json');
+        const copyJsonBtn = document.getElementById('copy-json');
+        const jsonResult = document.getElementById('json-result');
+        
+        formatJsonBtn.addEventListener('click', () => {
+            try {
+                const jsonObj = JSON.parse(jsonInput.value);
+                jsonOutput.textContent = JSON.stringify(jsonObj, null, 4);
+                jsonResult.style.display = 'block';
+            } catch (e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        });
+        
+        minifyJsonBtn.addEventListener('click', () => {
+            try {
+                const jsonObj = JSON.parse(jsonInput.value);
+                jsonOutput.textContent = JSON.stringify(jsonObj);
+                jsonResult.style.display = 'block';
+            } catch (e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        });
+        
+        validateJsonBtn.addEventListener('click', () => {
+            try {
+                JSON.parse(jsonInput.value);
+                alert('JSON is valid!');
+            } catch (e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        });
+        
+        clearJsonBtn.addEventListener('click', () => {
+            jsonInput.value = '';
+            jsonOutput.textContent = '';
+            jsonResult.style.display = 'none';
+        });
+        
+        copyJsonBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(jsonOutput.textContent)
+                .then(() => {
+                    copyJsonBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyJsonBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // Base64 Encoder/Decoder Tool
+        const base64Input = document.getElementById('base64-input');
+        const base64Output = document.getElementById('base64-output');
+        const encodeBase64Btn = document.getElementById('encode-base64');
+        const decodeBase64Btn = document.getElementById('decode-base64');
+        const clearBase64Btn = document.getElementById('clear-base64');
+        const copyBase64Btn = document.getElementById('copy-base64');
+        const base64Result = document.getElementById('base64-result');
+        
+        encodeBase64Btn.addEventListener('click', () => {
+            if (!base64Input.value.trim()) {
+                alert('Please enter text to encode');
+                return;
+            }
+            base64Output.value = btoa(encodeURIComponent(base64Input.value));
+            base64Result.style.display = 'block';
+        });
+        
+        decodeBase64Btn.addEventListener('click', () => {
+            if (!base64Input.value.trim()) {
+                alert('Please enter Base64 to decode');
+                return;
+            }
+            try {
+                base64Output.value = decodeURIComponent(atob(base64Input.value));
+                base64Result.style.display = 'block';
+            } catch (e) {
+                alert('Invalid Base64: ' + e.message);
+            }
+        });
+        
+        clearBase64Btn.addEventListener('click', () => {
+            base64Input.value = '';
+            base64Output.value = '';
+            base64Result.style.display = 'none';
+        });
+        
+        copyBase64Btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(base64Output.value)
+                .then(() => {
+                    copyBase64Btn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBase64Btn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // Password Generator Tool
+        const passwordLength = document.getElementById('password-length');
+        const lengthValue = document.getElementById('length-value');
+        const uppercase = document.getElementById('uppercase');
+        const lowercase = document.getElementById('lowercase');
+        const numbers = document.getElementById('numbers');
+        const symbols = document.getElementById('symbols');
+        const generatePasswordBtn = document.getElementById('generate-password');
+        const resetPasswordBtn = document.getElementById('reset-password');
+        const passwordOutput = document.getElementById('password-output');
+        const copyPasswordBtn = document.getElementById('copy-password');
+        const passwordStrength = document.getElementById('password-strength');
+        const passwordResult = document.getElementById('password-result');
+        
+        passwordLength.addEventListener('input', () => {
+            lengthValue.textContent = passwordLength.value;
+        });
+        
+        generatePasswordBtn.addEventListener('click', () => {
+            const length = parseInt(passwordLength.value);
+            const hasUpper = uppercase.checked;
+            const hasLower = lowercase.checked;
+            const hasNumber = numbers.checked;
+            const hasSymbol = symbols.checked;
+            
+            if (!hasUpper && !hasLower && !hasNumber && !hasSymbol) {
+                alert('Please select at least one character type');
+                return;
+            }
+            
+            let charset = '';
+            if (hasUpper) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (hasLower) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (hasNumber) charset += '0123456789';
+            if (hasSymbol) charset += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            
+            passwordOutput.textContent = password;
+            passwordResult.style.display = 'block';
+            
+            // Calculate password strength
+            let strength = 0;
+            if (length >= 12) strength += 2;
+            else if (length >= 8) strength += 1;
+            
+            const types = [hasUpper, hasLower, hasNumber, hasSymbol].filter(Boolean).length;
+            strength += types * 2;
+            
+            let strengthText, strengthClass;
+            if (strength >= 6) {
+                strengthText = 'Strong';
+                strengthClass = 'strong';
+            } else if (strength >= 4) {
+                strengthText = 'Medium';
+                strengthClass = 'medium';
+            } else {
+                strengthText = 'Weak';
+                strengthClass = 'weak';
+            }
+            
+            passwordStrength.innerHTML = `Strength: <span class="${strengthClass}">${strengthText}</span>`;
+        });
+        
+        resetPasswordBtn.addEventListener('click', () => {
+            passwordLength.value = 16;
+            lengthValue.textContent = '16';
+            uppercase.checked = true;
+            lowercase.checked = true;
+            numbers.checked = true;
+            symbols.checked = false;
+            passwordOutput.textContent = '';
+            passwordStrength.textContent = '';
+            passwordResult.style.display = 'none';
+        });
+        
+        copyPasswordBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(passwordOutput.textContent)
+                .then(() => {
+                    copyPasswordBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyPasswordBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // Color Picker Tool
+        const colorSelector = document.getElementById('color-selector');
+        const hexValue = document.getElementById('hex-value');
+        const rgbValue = document.getElementById('rgb-value');
+        const hslValue = document.getElementById('hsl-value');
+        const colorDisplay = document.getElementById('color-display');
+        const copyColorBtn = document.getElementById('copy-color');
+        const hexFormat = document.getElementById('hex-format');
+        const rgbFormat = document.getElementById('rgb-format');
+        const hslFormat = document.getElementById('hsl-format');
+        const paletteColors = document.querySelectorAll('.palette-color');
+        
+        colorSelector.addEventListener('input', updateColorValues);
+        
+        // Initialize color values
+        updateColorValues();
+        
+        function updateColorValues() {
+            const hex = colorSelector.value;
+            colorDisplay.style.backgroundColor = hex;
+            hexValue.textContent = hex.toUpperCase();
+            
+            // Convert HEX to RGB
+            const r = parseInt(hex.substring(1, 3), 16);
+            const g = parseInt(hex.substring(3, 5), 16);
+            const b = parseInt(hex.substring(5, 7), 16);
+            rgbValue.textContent = `rgb(${r}, ${g}, ${b})`;
+            
+            // Convert RGB to HSL
+            const hsl = rgbToHsl(r, g, b);
+            hslValue.textContent = `hsl(${Math.round(hsl[0])}, ${Math.round(hsl[1])}%, ${Math.round(hsl[2])}%)`;
+        }
+        
+        function rgbToHsl(r, g, b) {
+            r /= 255, g /= 255, b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h *= 60;
+            }
+            
+            return [h, s * 100, l * 100];
+        }
+        
+        // Handle palette color clicks
+        paletteColors.forEach(color => {
+            color.addEventListener('click', () => {
+                const bgColor = window.getComputedStyle(color).backgroundColor;
+                const rgb = bgColor.match(/\d+/g);
+                if (rgb && rgb.length >= 3) {
+                    // Convert RGB to HEX
+                    const hex = '#' + 
+                        parseInt(rgb[0]).toString(16).padStart(2, '0') + 
+                        parseInt(rgb[1]).toString(16).padStart(2, '0') + 
+                        parseInt(rgb[2]).toString(16).padStart(2, '0');
+                    colorSelector.value = hex;
+                    updateColorValues();
+                }
+            });
+        });
+        
+        copyColorBtn.addEventListener('click', () => {
+            let colorToCopy;
+            if (hexFormat.checked) colorToCopy = hexValue.textContent;
+            else if (rgbFormat.checked) colorToCopy = rgbValue.textContent;
+            else colorToCopy = hslValue.textContent;
+            
+            navigator.clipboard.writeText(colorToCopy)
+                .then(() => {
+                    copyColorBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyColorBtn.textContent = 'Copy HEX';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // QR Code Generator Tool
+        const qrContent = document.getElementById('qr-content');
+        const qrSize = document.getElementById('qr-size');
+        const qrColor = document.getElementById('qr-color');
+        const generateQrBtn = document.getElementById('generate-qr');
+        const resetQrBtn = document.getElementById('reset-qr');
+        const qrCodeDisplay = document.getElementById('qr-code-display');
+        const downloadQrBtn = document.getElementById('download-qr');
+        const shareQrBtn = document.getElementById('share-qr');
+        const qrResult = document.getElementById('qr-result');
+        
+        generateQrBtn.addEventListener('click', () => {
+            if (!qrContent.value.trim()) {
+                alert('Please enter content for the QR code');
+                return;
+            }
+            
+            const size = qrSize.value;
+            const color = qrColor.value.substring(1); // Remove # from hex color
+            const content = encodeURIComponent(qrContent.value.trim());
+            
+            // Using a free QR code API
+            qrCodeDisplay.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${content}&color=${color}" alt="QR Code">`;
+            qrResult.style.display = 'block';
+        });
+        
+        resetQrBtn.addEventListener('click', () => {
+            qrContent.value = '';
+            qrSize.value = '200';
+            qrColor.value = '#000000';
+            qrCodeDisplay.innerHTML = '';
+            qrResult.style.display = 'none';
+        });
+        
+        downloadQrBtn.addEventListener('click', () => {
+            const img = qrCodeDisplay.querySelector('img');
+            if (!img) {
+                alert('Please generate a QR code first');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = 'qr-code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        
+        shareQrBtn.addEventListener('click', () => {
+            const img = qrCodeDisplay.querySelector('img');
+            if (!img) {
+                alert('Please generate a QR code first');
+                return;
+            }
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'QR Code',
+                    text: 'Check out this QR code I generated',
+                    url: img.src
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                prompt('Copy this URL to share:', img.src);
+            }
+        });
+        
+        // URL Shortener Tool
+        const longUrl = document.getElementById('long-url');
+        const customAlias = document.getElementById('custom-alias');
+        const aliasPreview = document.getElementById('alias-preview');
+        const shortenUrlBtn = document.getElementById('shorten-url');
+        const clearUrlBtn = document.getElementById('clear-url');
+        const shortUrlOutput = document.getElementById('short-url-output');
+        const originalUrl = document.getElementById('original-url');
+        const urlClicks = document.getElementById('url-clicks');
+        const copyUrlBtn = document.getElementById('copy-url');
+        const urlResult = document.getElementById('url-result');
+        
+        customAlias.addEventListener('input', () => {
+            aliasPreview.textContent = customAlias.value.trim() || 'random';
+        });
+        
+        shortenUrlBtn.addEventListener('click', () => {
+            if (!longUrl.value.trim()) {
+                alert('Please enter a URL to shorten');
+                return;
+            }
+            
+            try {
+                // Validate URL
+                new URL(longUrl.value);
+            } catch (e) {
+                alert('Please enter a valid URL (include http:// or https://)');
+                return;
+            }
+            
+            // In a real app, this would call your backend API
+            // For demo purposes, we'll simulate it
+            const alias = customAlias.value.trim() || Math.random().toString(36).substring(2, 8);
+            const shortUrl = `https://toolhub.com/go/${alias}`;
+            
+            shortUrlOutput.textContent = shortUrl;
+            originalUrl.textContent = longUrl.value.trim();
+            urlClicks.textContent = '0';
+            urlResult.style.display = 'block';
+        });
+        
+        clearUrlBtn.addEventListener('click', () => {
+            longUrl.value = '';
+            customAlias.value = '';
+            aliasPreview.textContent = 'random';
+            shortUrlOutput.textContent = '';
+            originalUrl.textContent = '';
+            urlClicks.textContent = '0';
+            urlResult.style.display = 'none';
+        });
+        
+        copyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(shortUrlOutput.textContent)
+                .then(() => {
+                    copyUrlBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyUrlBtn.textContent = 'Copy Short URL';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // Word Counter Tool
+        const textToCount = document.getElementById('text-to-count');
+        const wordCount = document.getElementById('word-count');
+        const characterCount = document.getElementById('character-count');
+        const characterNoSpaces = document.getElementById('character-no-spaces');
+        const sentenceCount = document.getElementById('sentence-count');
+        const paragraphCount = document.getElementById('paragraph-count');
+        const readingTime = document.getElementById('reading-time');
+        const keywordDensity = document.getElementById('keyword-density');
+        const copyTextBtn = document.getElementById('copy-text');
+        const clearTextBtn = document.getElementById('clear-text');
+        const countResult = document.getElementById('count-result');
+        
+        textToCount.addEventListener('input', updateCounts);
+        
+        function updateCounts() {
+            const text = textToCount.value;
+            
+            // Word count (split by whitespace and filter out empty strings)
+            const words = text.trim() ? text.trim().split(/\s+/).filter(word => word.length > 0) : [];
+            wordCount.textContent = words.length;
+            
+            // Character counts
+            characterCount.textContent = text.length;
+            characterNoSpaces.textContent = text.replace(/\s+/g, '').length;
+            
+            // Sentence count (naive approach)
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            sentenceCount.textContent = sentences.length;
+            
+            // Paragraph count
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+            paragraphCount.textContent = paragraphs.length;
+            
+            // Reading time (average 200 words per minute)
+            const minutes = Math.ceil(words.length / 200);
+            readingTime.textContent = `${minutes} min`;
+            
+            // Keyword density (top 5)
+            if (words.length > 0) {
+                const wordFreq = {};
+                words.forEach(word => {
+                    const lowerWord = word.toLowerCase().replace(/[^a-z']/g, '');
+                    if (lowerWord.length > 3) { // Ignore short words
+                        wordFreq[lowerWord] = (wordFreq[lowerWord] || 0) + 1;
+                    }
+                });
+                
+                const sortedWords = Object.entries(wordFreq)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+                
+                keywordDensity.innerHTML = sortedWords.map(([word, count]) => 
+                    `<div>${word}: ${((count / words.length) * 100).toFixed(1)}% (${count})</div>`
+                ).join('');
+            } else {
+                keywordDensity.innerHTML = '';
+            }
+            
+            countResult.style.display = 'block';
+        }
+        
+        copyTextBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(textToCount.value)
+                .then(() => {
+                    copyTextBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyTextBtn.textContent = 'Copy Text';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        clearTextBtn.addEventListener('click', () => {
+            textToCount.value = '';
+            updateCounts();
+        });
+        
+        // AI Text Generator Tool (simulated)
+        const aiPrompt = document.getElementById('ai-prompt');
+        const aiTone = document.getElementById('ai-tone');
+        const aiLength = document.getElementById('ai-length');
+        const generateTextBtn = document.getElementById('generate-text');
+        const clearAiBtn = document.getElementById('clear-ai');
+        const aiOutput = document.getElementById('ai-output');
+        const copyAiBtn = document.getElementById('copy-ai');
+        const aiResult = document.getElementById('ai-result');
+        
+        generateTextBtn.addEventListener('click', () => {
+            if (!aiPrompt.value.trim()) {
+                alert('Please enter a prompt');
+                return;
+            }
+            
+            // Simulate AI generation with different responses based on tone and length
+            const tones = {
+                professional: "professional and formal",
+                casual: "casual and conversational",
+                friendly: "friendly and approachable",
+                formal: "very formal and precise"
+            };
+            
+            const lengths = {
+                short: "a short paragraph",
+                medium: "several paragraphs",
+                long: "a detailed, long-form response"
+            };
+            
+            aiOutput.value = `Here is ${lengths[aiLength.value]} in ${tones[aiTone.value]} tone based on your prompt "${aiPrompt.value}":\n\n` +
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` +
+                `Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n` +
+                `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ` +
+                `Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+            
+            if (aiLength.value === 'medium' || aiLength.value === 'long') {
+                aiOutput.value += `\n\nAdditional details would go here to expand on the topic and provide more comprehensive information ` +
+                    `based on the requested length of the response. The tone would remain consistent throughout the generated text.`;
+            }
+            
+            if (aiLength.value === 'long') {
+                aiOutput.value += `\n\nFor a long response, we would include even more detailed analysis, examples, and supporting information ` +
+                    `to fully address the prompt in depth. This might include bullet points, numbered lists, or other formatting elements ` +
+                    `to enhance readability and comprehension of the generated content.`;
+            }
+            
+            aiResult.style.display = 'block';
+        });
+        
+        clearAiBtn.addEventListener('click', () => {
+            aiPrompt.value = '';
+            aiOutput.value = '';
+            aiResult.style.display = 'none';
+        });
+        
+        copyAiBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(aiOutput.value)
+                .then(() => {
+                    copyAiBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyAiBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+        });
+        
+        // Password Strength Checker Tool
+        const passwordToCheck = document.getElementById('password-to-check');
+        const checkPasswordBtn = document.getElementById('check-password');
+        const clearCheckerBtn = document.getElementById('clear-checker');
+        const passwordStrengthCheck = document.getElementById('password-strength-check');
+        const passwordFeedback = document.getElementById('password-feedback');
+        const checkerResult = document.getElementById('checker-result');
+        
+        checkPasswordBtn.addEventListener('click', () => {
+            const password = passwordToCheck.value;
+            if (!password) {
+                alert('Please enter a password to check');
+                return;
+            }
+            
+            // Calculate password strength
+            let strength = 0;
+            let feedback = [];
+            
+            // Length check
+            if (password.length >= 12) strength += 2;
+            else if (password.length >= 8) strength += 1;
+            else feedback.push('Password is too short (minimum 8 characters)');
+            
+            // Character type checks
+            const hasUpper = /[A-Z]/.test(password);
+            const hasLower = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSymbol = /[^A-Za-z0-9]/.test(password);
+            
+            if (hasUpper) strength += 1;
+            else feedback.push('Add uppercase letters');
+            
+            if (hasLower) strength += 1;
+            else feedback.push('Add lowercase letters');
+            
+            if (hasNumber) strength += 1;
+            else feedback.push('Add numbers');
+            
+            if (hasSymbol) strength += 1;
+            else feedback.push('Add symbols');
+            
+            // Common password check
+            const commonPasswords = ['password', '123456', 'qwerty', 'letmein', 'welcome'];
+            if (commonPasswords.includes(password.toLowerCase())) {
+                strength = 0;
+                feedback = ['This is a very common password - choose something more unique'];
+            }
+            
+            // Sequential characters check
+            if (/(.)\1{2,}/.test(password)) {
+                strength -= 1;
+                feedback.push('Avoid repeating characters');
+            }
+            
+            // Determine strength level
+            let strengthText, strengthClass;
+            if (strength >= 6) {
+                strengthText = 'Strong';
+                strengthClass = 'strong';
+                feedback = ['Great job! This is a strong password'];
+            } else if (strength >= 4) {
+                strengthText = 'Medium';
+                strengthClass = 'medium';
+                if (feedback.length === 0) feedback.push('Good start, but could be stronger');
+            } else {
+                strengthText = 'Weak';
+                strengthClass = 'weak';
+                if (feedback.length === 0) feedback.push('Very weak password');
+            }
+            
+            passwordStrengthCheck.innerHTML = `Strength: <span class="${strengthClass}">${strengthText}</span>`;
+            passwordFeedback.innerHTML = feedback.map(item => `<div>• ${item}</div>`).join('');
+            checkerResult.style.display = 'block';
+        });
+        
+        clearCheckerBtn.addEventListener('click', () => {
+            passwordToCheck.value = '';
+            passwordStrengthCheck.textContent = '';
+            passwordFeedback.textContent = '';
+            checkerResult.style.display = 'none';
+        });
+        
+        // Weather API Explorer Tool (simulated)
+        const weatherLocation = document.getElementById('weather-location');
+        const weatherUnits = document.getElementById('weather-units');
+        const getWeatherBtn = document.getElementById('get-weather');
+        const clearWeatherBtn = document.getElementById('clear-weather');
+        const weatherOutput = document.getElementById('weather-output');
+        const weatherResult = document.getElementById('weather-result');
+        
+        getWeatherBtn.addEventListener('click', () => {
+            if (!weatherLocation.value.trim()) {
+                alert('Please enter a location');
+                return;
+            }
+            
+            // Simulate weather API response
+            const units = weatherUnits.value;
+            const tempUnit = units === 'metric' ? '°C' : '°F';
+            const windUnit = units === 'metric' ? 'm/s' : 'mph';
+            
+            const temp = units === 'metric' ? 
+                Math.floor(Math.random() * 30) - 5 : // -5 to 25°C
+                Math.floor(Math.random() * 86) + 23; // 23 to 108°F
+            
+            const weatherConditions = ['Sunny', 'Partly Cloudy', 'Cloudy', 'Rainy', 'Thunderstorm', 'Snowy'];
+            const condition = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            
+            weatherOutput.innerHTML = `
+                <h4>Weather for ${weatherLocation.value}</h4>
+                <div style="font-size: 2rem; margin: 10px 0;">${temp}${tempUnit}</div>
+                <div style="font-size: 1.2rem; margin-bottom: 10px;">${condition}</div>
+                <div>Humidity: ${Math.floor(Math.random() * 60) + 30}%</div>
+                <div>Wind: ${Math.floor(Math.random() * 15) + 1} ${windUnit}</div>
+                <div>Pressure: ${Math.floor(Math.random() * 30) + 980} hPa</div>
+            `;
+            
+            weatherResult.style.display = 'block';
+        });
+        
+        clearWeatherBtn.addEventListener('click', () => {
+            weatherLocation.value = '';
+            weatherOutput.textContent = '';
+            weatherResult.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
